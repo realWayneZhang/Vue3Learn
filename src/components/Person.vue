@@ -1,29 +1,29 @@
 <template>
   <div class="person">
-    <h2>个人信息</h2>
-    <p>姓名：{{ name }}</p>
-    <p>年龄：{{ age }}</p>
-    <button @click="changenName">修改名字</button>
-    <button @click="changeAge">修改年龄</button>
-    <button @click="showTel">查看联系方式</button>
+    <h2>一辆{{ car.brand }}车，价值{{ car.price }}万</h2>
+    <button @click="changePrice">修改汽车的价格</button>
+    <h2>当前求和为{{ sum }}</h2>
+    <button @click="changeSum">点我 sum+1</button>
   </div>
 </template>
 
 <script lang="ts" name="Person" setup>
-let name = '张三'
-let age = 25
-let tel = '13899999999'
+import { ref, reactive } from 'vue'
+// 数据
+let car = ref({
+  brand: '奔驰',
+  price: 100,
+})
+let sum = ref(0)
 
-function showTel() {
-  alert(`联系方式：${tel}`)
+function changeSum() {
+  sum.value += 1
+  console.log(`修改后的求和：${sum.value}`)
 }
-function changenName() {
-  name = '李四'
-  console.log(`修改后的姓名：${name}`)
-}
-function changeAge() {
-  age += 1
-  console.log(`修改后的年龄：${age}`)
+
+function changePrice() {
+  car.value.price += 10
+  console.log(`修改后的汽车价格：${car.value.price}万`)
 }
 </script>
 
